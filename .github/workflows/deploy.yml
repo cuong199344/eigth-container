@@ -15,7 +15,7 @@ jobs:
       image: node:16
     env:
       MONGODB_CONNECTION_PROTOCOL: mongodb
-      MONGODB_CLUSTER_ADDRESS: mongodb
+      MONGODB_CLUSTER_ADDRESS: 127.0.0.1:27017
       # Sử dụng các xác thực giống với service
       MONGODB_USERNAME: root
       MONGODB_PASSWORD: example
@@ -24,6 +24,8 @@ jobs:
       # tên do người dùng đặt
       mongodb:
         image: mongo
+        ports:
+          - 27017:27017
         env:
           # Không cần phải quá kỹ hoặc là ẩn bởi vì đây chỉ là một server test được sử dụng bởi github action và sẽ tự xóa đi sao khi kết thúc(mục đích chính là để testing)
           MONGO_INITDB_ROOT_USERNAME: root
